@@ -99,10 +99,16 @@ function isDuplicate( mysqli $db, string $task_name ){
 
 function displayActiveList( mysqli $db ){
     $data = [];
+    // Citation
+    // https://www.w3schools.com/sql/func_sqlserver_datediff.asp
+    // Learnt about DATEDIFF() from above source
     $sql = "SELECT TaskID, CategoryID, TaskName, DueDate, CategoryName 
     FROM Task 
     INNER JOIN Category USING (CategoryID)
-    WHERE IsComplete IS NOT TRUE";
+    WHERE IsComplete IS NOT TRUE
+    AND (SELECT DATEDIFF(DueDate,Now()))>=0";
+    // End Citation
+    
     $result = $db->query($sql);
 
     //Check if the query was executed successfully
