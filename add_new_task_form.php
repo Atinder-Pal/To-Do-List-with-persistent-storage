@@ -3,6 +3,7 @@
     require_once'db.php';
 
     $category_select_options = null;
+    $message = null;
     $category_sql = "SELECT * FROM Category";
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
@@ -26,16 +27,34 @@
         
         //Test if the form info is transferred to $_POST on submission
         if( isset ($_POST[ 'add_task' ]) ){
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+
+            if ( !empty($_POST[ 'new_task' ]) && !empty($_POST[ 'due_date' ]) && !empty($_POST[ 'category' ]) ){
+                //Escape User Input
+                // Citation 
+                // https://www.w3schools.com/php/func_mysqli_real_escape_string.asp
+                // https://www.tutorialrepublic.com/php-tutorial/php-filters.php
+                // https://www.w3schools.com/php/filter_sanitize_number_int.asp
+                // Above sources talk about methods to validate and sanitize user input
+                $new_task = $connection->real_escape_string( $_POST[ 'new_task' ] );
+                $due_date = $connection->real_escape_string( $_POST[ 'due_date' ] );
+                $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
+                //End Citation
+                $message = insertTask( $connection, $new_task, $due_date, $category );
+                
+            }
+           
         }
+        
 
         // ==========================================================================
     }
 ?>
     <section>
         <h2>Add new Task to your List!</h2>
+        <?php if($message) echo $message; ?>
         <form action="#" method="POST">
             <label for="new_task">
                 Add new task:            

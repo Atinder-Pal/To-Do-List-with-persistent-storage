@@ -41,3 +41,30 @@ function fetchAllCategories( mysqli $db ){
 
     return $data;
 }
+
+function insertTask( mysqli $db, string $task_name, string $due_date, int $category_id){
+    if( $task_name !='' && $due_date !='' && $category_id !='' ){
+        // Citation
+        // Following code referenced from Classroom Practice by Tammy Valgardson
+        $insert = $db->prepare( "INSERT INTO Task( TaskID, CategoryID, TaskName, DueDate, IsComplete )
+        VALUES( NULL, ?,?,?,0 )");
+        if( $insert ){
+            if( $insert->bind_param("iss", $category_id, $task_name, $due_date) ){
+                if( $insert->execute() ){
+                    $message = "Task Added to To-Do List";
+                }
+                else{
+                    exit("There was a problem executing insert stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to insert stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+    }
+    return $message;    
+}
+
