@@ -1,5 +1,13 @@
 <?php
-    
+    require_once'constants.php';
+    require_once'db.php';
+
+    $connection = connect( HOST, USER, PASSWORD, DATABASE );
+    //test if the connection is established to the database
+    if($connection instanceof mysqli){
+        echo "Client info: ". $connection->client_info. "\n";
+        echo "Client version: ". $connection->client_version. "\n";
+    }
 ?>
     <section>
         <h2>Add new Task to your List!</h2>
