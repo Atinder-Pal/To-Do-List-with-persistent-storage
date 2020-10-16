@@ -1,3 +1,4 @@
+<?php date_default_timezone_set('America/Edmonton'); ?>
 <?php
     require_once'constants.php';
     require_once'db.php';
@@ -53,7 +54,7 @@
         // ==========================================================================
     }
 ?>
-    <section>
+    <section>    
         <h2>Add new Task to your List!</h2>
         <?php if($message) echo $message; ?>
         <form action="#" method="POST">
@@ -66,7 +67,7 @@
                 <?php//Citation ?>           
                 <?php//https://stackoverflow.com/questions/43274559/how-do-i-restrict-past-dates-in-html5-input-type-date ?>           
                 <?php//Above source showed how to set min attribute to current date ?> 
-                <input id="due_date" type="date" name="due_date" min="<?php echo date("Y-m-d"); ?>" autofocus required>
+                <input id="due_date" type="date" name="due_date" min="<?php echo date("Y-m-d"); ?>" required>
                 <?php//End Citation ?>
             </label>
             <label for="category">

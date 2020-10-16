@@ -34,6 +34,6 @@
                 </tr>
                 <?php echo $active_list ?>
             </table>
-            <input type="submit" name="add_task" value="Completed!" id="completed_button">            
+            <input type="submit" name="completed_task" value="Completed!" id="completed_button">            
         </form>        
     </section>
