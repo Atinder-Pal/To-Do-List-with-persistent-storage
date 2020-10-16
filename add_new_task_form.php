@@ -1,4 +1,6 @@
-
+<?php
+    
+?>
     <section>
         <h2>Add new Task to your List!</h2>
         <form action="#" method="POST">
@@ -21,7 +23,7 @@
                     <?php// echo $category_select_options; ?>
                 </select>
             </label>
-            <input type="submit" name="addTask" value="Add to List" id="add-task-button">            
+            <input type="submit" name="add_task" value="Add to List" id="add_task_button">            
         </form>        
     </section>
 
