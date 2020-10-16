@@ -20,3 +20,24 @@ function connect($dbHost, $dbUsername, $dbPassword, $dbName){
     }
     return $connection;
 }
+
+function fetchAllCategories( mysqli $db ){
+    $data = [];
+    $sql = "SELECT * FROM Category";
+    $result = $db->query($sql);
+
+    //Check if the query was executed successfully
+    // Hint: if it is not executed successfully- it will return False
+    if( !$result ) {
+        echo "Something went wrong with the category query";
+        exit();
+    }
+    //If query returned any resultset
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
+            $data[] = $row;
+        }
+    }
+
+    return $data;
+}
