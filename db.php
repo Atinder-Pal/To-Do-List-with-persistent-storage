@@ -65,6 +65,34 @@ function insertTask( mysqli $db, string $task_name, string $due_date, int $categ
             exit("There was a problem with the prepare statement");
         }
     }
+    // End Citation
     return $message;    
 }
 
+function isDuplicate( mysqli $db, string $task_name ){       
+    if( $task_name !=''){    
+        $message = FALSE;    
+        $sql = $db->prepare( "SELECT * FROM Task WHERE TaskName = ? AND IsComplete IS NOT TRUE" );
+        if( $sql ){
+            if( $sql->bind_param( "s", $task_name ) ){
+                if( $sql->execute() ){
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0){
+                        $message = TRUE;
+                    }
+                }
+                else{
+                    exit("There was a problem executing insert stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to insert stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+    }
+    // End Citation
+    return $message; 
+}

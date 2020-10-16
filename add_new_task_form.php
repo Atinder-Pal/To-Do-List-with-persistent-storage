@@ -39,16 +39,17 @@
                 // https://www.w3schools.com/php/filter_sanitize_number_int.asp
                 // Above sources talk about methods to validate and sanitize user input
                 $new_task = $connection->real_escape_string( $_POST[ 'new_task' ] );
-                $due_date = $connection->real_escape_string( $_POST[ 'due_date' ] );
-                $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
-                //End Citation
-                $message = insertTask( $connection, $new_task, $due_date, $category );
-                
-            }
-           
+                if( !isDuplicate( $connection, $new_task ) ){
+                    $due_date = $connection->real_escape_string( $_POST[ 'due_date' ] );
+                    $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
+                    //End Citation
+                    $message = insertTask( $connection, $new_task, $due_date, $category );
+                }    
+                else{
+                    $message = "Task is already added to the list!";
+                }           
+            }           
         }
-        
-
         // ==========================================================================
     }
 ?>
