@@ -11,15 +11,27 @@
     // https://github.com/pfwd/how-to-code-well-tutorials/blob/master/tutorials/php/php-mysql/index.php
     // Referenced above github repo to check syntax for confirming an object of a class is returned
     if($connection instanceof mysqli){
-
+        // ===============Populate Select Category Menu===========================
         // Get all the categories from Category Table in db
         $categories = fetchAllCategories( $connection );
         foreach( $categories as $category ){
-            $category_select_options .= sprintf( '<option value="%i">%s</option>',
+            $category_select_options .= sprintf( '<option value="%d">%s</option>',
                 $category[ 'CategoryID' ],
                 $category[ 'CategoryName' ] 
             );
         }
+        // ==========================================================================
+
+        // ==============Insert the entered task into Task table in db===============
+        
+        //Test if the form info is transferred to $_POST on submission
+        if( isset ($_POST[ 'add_task' ]) ){
+            echo '<pre>';
+            print_r($_POST);
+            echo '</pre>';
+        }
+
+        // ==========================================================================
     }
 ?>
     <section>
@@ -39,7 +51,7 @@
             </label>
             <label for="category">
                 Task Category:            
-                <select name="species" id="species" required>
+                <select name="category" id="category" required>
                     <option value="">Select a category</option>
                     <?php echo $category_select_options; ?>
                 </select>
