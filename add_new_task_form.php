@@ -81,6 +81,6 @@
             </label>
             <input type="submit" name="add_task" value="Add to List" id="add_task_button">            
         </form> 
-        <button id ="edit_category_button" name="edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
+        <button id ="add_edit_category_button" name="add_edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
     </section>
 

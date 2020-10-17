@@ -1,3 +1,26 @@
+<?php
+    require_once'constants.php';
+    require_once'db.php';
+
+    $categories = null;
+
+    $connection = connect( HOST, USER, PASSWORD, DATABASE );
+    if($connection instanceof mysqli){
+        $fetch_categories = fetchAllCategories( $connection );
+        foreach( $fetch_categories as $category ){
+            $categories .= sprintf( 
+                '<form>
+                <input type="hidden" name="category_id_to_be edited" id="category_id_to_be edited" value=%d>
+                <input type="text" name="category_to_be edited" id="category_to_be edited" value="%s" autofocus>
+                <input type="submit" name="edit_category_button" value="Edit" id="edit_category_button">
+                </form>',
+                $category[ 'CategoryID' ],
+                $category[ 'CategoryName' ] 
+            );
+        }
+    }
+
+?>    
 <nav>
     <a href="index.php">HOME</a>
 </nav>
@@ -12,5 +35,7 @@
         <input type="submit" name="add_category" value="Add" id="add_category_button"> 
 </form>
 <section>
-    <?php //echo $categories ?>
+<h2>Existing Categories:</h2>
+<h3>Make change(s) in any of the following categories and Press the Edit button to submit the change(s) </h3>
+    <?php echo $categories ?>
 </section>
