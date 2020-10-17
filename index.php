@@ -12,5 +12,8 @@ include dirname(__FILE__).'/active_to_do_list.php';
 // Show Overdue To-Do List
 include dirname(__FILE__).'/overdue_to_do_list.php';
 
+// Show Completed To-Do List
+include dirname(__FILE__).'/completed_to_do_list.php';
+
 // Show Footer
 include dirname(__FILE__).'/includes/footer.php';

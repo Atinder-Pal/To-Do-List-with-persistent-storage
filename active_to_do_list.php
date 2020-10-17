@@ -14,7 +14,7 @@
                 <td>%s</td>
                 <td>%s</td>
             </tr>',
-            $active_task[ 'CategoryID' ],
+            $active_task[ 'TaskID' ],
             $active_task[ 'CategoryName' ],
             $active_task[ 'TaskName' ],
             $active_task[ 'DueDate' ]            
