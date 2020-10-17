@@ -211,3 +211,32 @@ function displayCompletedList( mysqli $db ){
     }    
     return $data;
 }
+
+function deleteTasks(mysqli $db, array $selected_tasks ){
+    $message = null;
+    if( $selected_tasks !=['']){
+        // Citation
+        // https://www.w3schools.com/php/func_string_implode.asp
+        // https://stackoverflow.com/questions/920353/can-i-bind-an-array-to-an-in-condition/36070527#36070527
+        // Learnt about implode() function to unpack an array with desired separator
+        $condition = implode(",",$selected_tasks);
+        // End Citation
+        $sql = "DELETE FROM Task WHERE TaskID IN (".$condition.") ";
+        $result = $db->query($sql);
+
+        //Check if the query was executed successfully
+        // Hint: if it is not executed successfully- it will return False
+        if( !$result ) {
+            echo "Something went wrong with the delete query";
+            exit();
+        }
+        //If query returned any affected rows
+        // citation
+        // https://stackoverflow.com/questions/8356845/php-mysql-get-number-of-affected-rows-of-update-statement
+        // if($db->affected_rows > 0){
+        //     $message="Task(s) added to Completed List" ;
+        // }
+        // End Citation
+    }    
+    return $message;
+}

@@ -3,6 +3,8 @@
     require_once'db.php';
 
     $active_list = null;
+    $completed_tasks = [];
+    $delete_tasks = [];
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
     if ( isset( $_POST['completed_task'] ) ){        
@@ -11,6 +13,16 @@
                 $completed_tasks = [...$completed_tasks, filter_var( $selected_task, FILTER_SANITIZE_NUMBER_INT ) ];
             }
             $message = setCompletedStatus( $connection, $completed_tasks );
+            //var_dump( $completed_tasks );                           
+        }         
+    }
+
+    if ( isset( $_POST['delete_task'] ) ){        
+        if ( !empty($_POST[ 'selected_tasks' ] )){
+            foreach( $_POST[ 'selected_tasks' ] as $selected_task ){                 
+                $delete_tasks = [...$delete_tasks, filter_var( $selected_task, FILTER_SANITIZE_NUMBER_INT ) ];
+            }
+            $message = deleteTasks( $connection, $delete_tasks );
             //var_dump( $completed_tasks );                           
         }         
     }
@@ -45,5 +57,6 @@
                 <?php echo $active_list ?>
             </table>
             <input type="submit" name="completed_task" value="Completed!" id="completed_button">            
+            <input type="submit" name="delete_task" value="Delete" id="delete_button">            
         </form>        
     </section>

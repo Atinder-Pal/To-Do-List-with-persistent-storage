@@ -35,6 +35,7 @@
             </tr>
             <?php echo $overdue_list ?>
         </table>
-        <input type="submit" name="completed_task" value="Completed!" id="completed_button">            
+        <input type="submit" name="completed_task" value="Completed!" id="completed_button"> 
+        <input type="submit" name="delete_task" value="Delete" id="delete_button">            
     </form>        
 </section>

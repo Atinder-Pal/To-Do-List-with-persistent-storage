@@ -1,7 +1,6 @@
 <?php
     require_once'constants.php';
-    require_once'db.php';    
-    
+    require_once'db.php';     
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
     if($connection instanceof mysqli){        

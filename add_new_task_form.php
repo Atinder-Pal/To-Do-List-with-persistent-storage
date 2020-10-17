@@ -80,6 +80,7 @@
                 </select>
             </label>
             <input type="submit" name="add_task" value="Add to List" id="add_task_button">            
-        </form>        
+        </form> 
+        <button id ="edit_category_button" name="edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
     </section>
 
