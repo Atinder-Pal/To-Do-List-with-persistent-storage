@@ -155,3 +155,60 @@ function displayOverdueList( mysqli $db ){
     }
     return $data;
 }
+
+function setCompletedStatus(mysqli $db, array $completed_tasks ){
+    $message = null;
+    if( $completed_tasks !=['']){
+        // Citation
+        // https://www.w3schools.com/php/func_string_implode.asp
+        // https://stackoverflow.com/questions/920353/can-i-bind-an-array-to-an-in-condition/36070527#36070527
+        // Learnt about implode() function to unpack an array with desired separator
+        $condition = implode(",",$completed_tasks);
+        // End Citation
+        $sql = "UPDATE Task SET IsComplete = 1 WHERE TaskID IN (".$condition.") ";
+        $result = $db->query($sql);
+
+        //Check if the query was executed successfully
+        // Hint: if it is not executed successfully- it will return False
+        if( !$result ) {
+            echo "Something went wrong with the update query";
+            exit();
+        }
+        //If query returned any affected rows
+        // citation
+        // https://stackoverflow.com/questions/8356845/php-mysql-get-number-of-affected-rows-of-update-statement
+        if($db->affected_rows > 0){
+            $message="Task(s) added to Completed List" ;
+        }
+        // End Citation
+    }
+    return $message;
+}
+
+function displayCompletedList( mysqli $db ){
+    $data = [];
+    // Citation
+    // https://www.w3schools.com/sql/func_sqlserver_datediff.asp
+    // Learnt about DATEDIFF() from above source
+    $sql = "SELECT TaskName, DueDate, CategoryName 
+    FROM Task 
+    INNER JOIN Category USING (CategoryID)
+    WHERE IsComplete IS TRUE";
+    // End Citation
+    
+    $result = $db->query($sql);
+
+    //Check if the query was executed successfully
+    // Hint: if it is not executed successfully- it will return False
+    if( !$result ) {
+        echo "Something went wrong with the category query";
+        exit();
+    }
+    //If query returned any resultset
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
+            $data[] = $row;
+        }
+    }
+    return $data;
+}
