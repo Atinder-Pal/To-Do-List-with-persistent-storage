@@ -5,7 +5,8 @@
 
     $category_select_options = null;
     $message = null;
-    $category_sql = "SELECT * FROM Category";
+    $completed_list = null;
+    $completed_tasks = [];
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
     //test if the connection is established to the database

@@ -5,6 +5,16 @@
     $active_list = null;
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
+    if ( isset( $_POST['completed_task'] ) ){        
+        if ( !empty($_POST[ 'selected_tasks' ] )){
+            foreach( $_POST[ 'selected_tasks' ] as $selected_task ){                 
+                $completed_tasks = [...$completed_tasks, filter_var( $selected_task, FILTER_SANITIZE_NUMBER_INT ) ];
+            }
+            $message = setCompletedStatus( $connection, $completed_tasks );
+            //var_dump( $completed_tasks );                           
+        }         
+    }
+
     $active_tasks = displayActiveList($connection);
     foreach( $active_tasks as $active_task ){
         $active_list .= sprintf('

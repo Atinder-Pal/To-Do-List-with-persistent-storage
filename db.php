@@ -37,8 +37,7 @@ function fetchAllCategories( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }
-
+    }   
     return $data;
 }
 
@@ -65,7 +64,7 @@ function insertTask( mysqli $db, string $task_name, string $due_date, int $categ
             exit("There was a problem with the prepare statement");
         }
     }
-    // End Citation
+    // End Citation    
     return $message;    
 }
 
@@ -93,7 +92,7 @@ function isDuplicate( mysqli $db, string $task_name ){
             exit("There was a problem with the prepare statement");
         }
     }
-    // End Citation
+    // End Citation    
     return $message; 
 }
 
@@ -122,7 +121,7 @@ function displayActiveList( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }
+    }        
     return $data;
 }
 
@@ -152,7 +151,7 @@ function displayOverdueList( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }
+    }    
     return $data;
 }
 
@@ -177,11 +176,11 @@ function setCompletedStatus(mysqli $db, array $completed_tasks ){
         //If query returned any affected rows
         // citation
         // https://stackoverflow.com/questions/8356845/php-mysql-get-number-of-affected-rows-of-update-statement
-        if($db->affected_rows > 0){
-            $message="Task(s) added to Completed List" ;
-        }
+        // if($db->affected_rows > 0){
+        //     $message="Task(s) added to Completed List" ;
+        // }
         // End Citation
-    }
+    }    
     return $message;
 }
 
@@ -209,6 +208,6 @@ function displayCompletedList( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }
+    }    
     return $data;
 }
