@@ -125,3 +125,33 @@ function displayActiveList( mysqli $db ){
     }
     return $data;
 }
+
+
+function displayOverdueList( mysqli $db ){
+    $data = [];
+    // Citation
+    // https://www.w3schools.com/sql/func_sqlserver_datediff.asp
+    // Learnt about DATEDIFF() from above source
+    $sql = "SELECT TaskID, CategoryID, TaskName, DueDate, CategoryName 
+    FROM Task 
+    INNER JOIN Category USING (CategoryID)
+    WHERE IsComplete IS NOT TRUE
+    AND (SELECT DATEDIFF(DueDate,Now()))<0";
+    // End Citation
+
+    $result = $db->query($sql);
+
+    //Check if the query was executed successfully
+    // Hint: if it is not executed successfully- it will return False
+    if( !$result ) {
+        echo "Something went wrong with the category query";
+        exit();
+    }
+    //If query returned any resultset
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
+            $data[] = $row;
+        }
+    }
+    return $data;
+}
