@@ -3,7 +3,7 @@
     require_once'db.php';
 
     $categories = null;
-
+    $message = null;
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
     if($connection instanceof mysqli){
         if( isset( $_POST[ 'add_category' ] ) ){
@@ -42,6 +42,7 @@
                 <input type="hidden" name="category_id_to_be edited" id="category_id_to_be edited" value=%d>
                 <input type="text" name="category_to_be edited" id="category_to_be edited" value="%s" autofocus>
                 <input type="submit" name="edit_category" value="Edit" id="edit_category_button">
+                <input type="submit" name="delete_category" id="delete_category_button" value="X">
                 </form>',
                 $category[ 'CategoryID' ],
                 $category[ 'CategoryName' ] 
