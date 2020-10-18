@@ -4,10 +4,9 @@
 
     $categories = null;
     $message = null;
-    $connection = connect( HOST, USER, PASSWORD, DATABASE );
-    if($connection instanceof mysqli){
         if( isset( $_POST[ 'add_category' ] ) ){
             if ( !empty($_POST[ 'new_category' ])){
+                $connection = connect( HOST, USER, PASSWORD, DATABASE );
                 $new_sanitized_category = $connection->real_escape_string( $_POST[ 'new_category' ] );
                 if( !isDuplicateCategory( $connection, $new_sanitized_category ) ){
                     $message = insertCategory( $connection, $new_sanitized_category );
@@ -15,6 +14,7 @@
                 else{
                     $message = "Category is already in the category list!";
                 }    
+                $connection->close(); 
             }
         }
 
@@ -24,6 +24,7 @@
             // print_r($_POST);
             // echo '</pre>';
             if ( !empty($_POST[ 'category_id_to_be_edited' ]) && !empty($_POST[ 'category_to_be_edited' ]) ){
+                $connection = connect( HOST, USER, PASSWORD, DATABASE );
                 $category_name = $connection->real_escape_string( $_POST[ 'category_to_be_edited' ] );
                 if( !isDuplicateCategory( $connection, $category_name ) ){
                     $category_id = filter_var($_POST['category_id_to_be_edited'], FILTER_SANITIZE_NUMBER_INT);
@@ -31,7 +32,8 @@
                 }    
                 else{
                     $message = "Category is already in the category list!";
-                }    
+                } 
+                $connection->close();  
             }
         }
 
@@ -42,10 +44,13 @@
             // echo '</pre>';
             if ( !empty($_POST[ 'category_id_to_be_edited' ]) && !empty($_POST[ 'category_to_be_edited' ]) ){
                 $category_id = filter_var($_POST['category_id_to_be_edited'], FILTER_SANITIZE_NUMBER_INT);
-                $message = deleteCategory( $connection, $category_id );                
+                $connection = connect( HOST, USER, PASSWORD, DATABASE );
+                $message = deleteCategory( $connection, $category_id );
+                $connection->close();                  
             }
         }
 
+        $connection = connect( HOST, USER, PASSWORD, DATABASE );
         $fetch_categories = fetchAllCategories( $connection );
         foreach( $fetch_categories as $category ){
             $categories .= sprintf( 
@@ -59,7 +64,7 @@
                 $category[ 'CategoryName' ] 
             );
         }
-    }
+        $connection->close();   
 
 ?>    
 <nav>

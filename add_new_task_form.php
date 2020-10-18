@@ -23,6 +23,8 @@
                 $category[ 'CategoryName' ] 
             );
         }
+    }
+    $connection->close();
         // ==========================================================================
 
         // ==============Insert the entered task into Task table in db===============
@@ -34,6 +36,7 @@
             // echo '</pre>';
 
             if ( !empty($_POST[ 'new_task' ]) && !empty($_POST[ 'due_date' ]) && !empty($_POST[ 'category' ]) ){
+                $connection = connect( HOST, USER, PASSWORD, DATABASE );
                 //Escape User Input
                 // Citation 
                 // https://www.w3schools.com/php/func_mysqli_real_escape_string.asp
@@ -49,12 +52,14 @@
                 }    
                 else{
                     $message = "Task is already added to the list!";
-                }           
+                } 
+                $connection->close();          
             }           
         }
         // ==========================================================================
         
-    }
+    
+    
 ?>
     <section>    
         <h2>Add new Task to your List!</h2>

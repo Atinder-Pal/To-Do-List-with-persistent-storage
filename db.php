@@ -299,6 +299,7 @@ function insertCategory( mysqli $db, string $category_name){
 }
 
 function editCategory( $db, $category_id, $category_name ){
+    $message = null;
     if( $category_id !='' && $category_name !='' ){       
         $edit = $db->prepare( "UPDATE Category SET CategoryName = ? WHERE CategoryID = ? " );
         if( $edit ){

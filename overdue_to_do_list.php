@@ -20,6 +20,7 @@
             $overdue_task[ 'DueDate' ]            
         );
     }
+    $connection->close();
 ?>
 
 <section>

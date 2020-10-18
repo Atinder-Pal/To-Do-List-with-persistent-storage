@@ -5,15 +5,16 @@
     $active_list = null;
     $completed_tasks = [];
     $delete_tasks = [];
-
-    $connection = connect( HOST, USER, PASSWORD, DATABASE );
+    
     if ( isset( $_POST['completed_task'] ) ){        
         if ( !empty($_POST[ 'selected_tasks' ] )){
             foreach( $_POST[ 'selected_tasks' ] as $selected_task ){                 
                 $completed_tasks = [...$completed_tasks, filter_var( $selected_task, FILTER_SANITIZE_NUMBER_INT ) ];
             }
+            $connection = connect( HOST, USER, PASSWORD, DATABASE );
             $message = setCompletedStatus( $connection, $completed_tasks );
-            //var_dump( $completed_tasks );                           
+            //var_dump( $completed_tasks );
+            $connection->close();                              
         }         
     }
 
@@ -22,11 +23,13 @@
             foreach( $_POST[ 'selected_tasks' ] as $selected_task ){                 
                 $delete_tasks = [...$delete_tasks, filter_var( $selected_task, FILTER_SANITIZE_NUMBER_INT ) ];
             }
+            $connection = connect( HOST, USER, PASSWORD, DATABASE );
             $message = deleteTasks( $connection, $delete_tasks );
-            //var_dump( $completed_tasks );                           
+            //var_dump( $completed_tasks );   
+            $connection->close();                         
         }         
     }
-
+    $connection = connect( HOST, USER, PASSWORD, DATABASE );
     $active_tasks = displayActiveList($connection);
     foreach( $active_tasks as $active_task ){
         $active_list .= sprintf('
@@ -42,6 +45,7 @@
             $active_task[ 'DueDate' ]            
         );
     }
+    $connection->close();
 ?>
 <section>
         <h2>Active To-Do List</h2>
