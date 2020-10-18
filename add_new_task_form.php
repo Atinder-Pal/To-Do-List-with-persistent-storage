@@ -1,4 +1,4 @@
-<?php date_default_timezone_set('America/Edmonton'); ?>
+<?php //date_default_timezone_set('America/Edmonton'); ?>
 <?php
     require_once'constants.php';
     require_once'db.php';
@@ -82,8 +82,14 @@
                     <?php echo $category_select_options; ?>
                 </select>
             </label>
+            <!-- Citation
+            https://stackoverflow.com/questions/2825856/html-button-to-not-submit-form
+            Fixed error by specifying type=button inside button to avoid it submitting the form
+            -->
+            <button type="button" id ="add_edit_category_button" name="add_edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
+            <!-- End Citation -->
             <input type="submit" name="add_task" value="Add to List" id="add_task_button">            
         </form> 
-        <button id ="add_edit_category_button" name="add_edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
+        
     </section>
 

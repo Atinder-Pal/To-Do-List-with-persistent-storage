@@ -67,10 +67,11 @@
         $connection->close();   
 
 ?>    
+<article>
 <nav>
     <a href="index.php">HOME</a>
 </nav>
-
+<section>
 <h2>Add a new Category!</h2>
     <?php if($message) echo $message; ?>
     <form action="#" method="POST">
@@ -79,9 +80,12 @@
             <input id="new_category" type="text" value="" name="new_category" placeholder="New Category" autofocus required>
         </label>
         <input type="submit" name="add_category" value="Add" id="add_category_button"> 
-</form>
+    </form>
+</section>
+
 <section>
 <h2>Existing Categories:</h2>
 <h3>Make change(s) in any of the following categories and Press the Edit button to submit the change(s) </h3>
     <?php echo $categories ?>
 </section>
+</article>

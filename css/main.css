@@ -1,0 +1,44 @@
+/* *{outline: 0.2rem solid red;}  */
+*{
+    margin:0;
+    padding:0;
+}
+body {
+    min-height:100vh;
+}
+h1 {
+    width:100%;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom:3vh;
+    padding:1vh;
+    font-size: 1.5rem;
+    background-color: #DC4C3F;
+    color:#fff;
+}
+section h2{
+    color:#DC4C3F;
+    font-size: 1.2rem;
+}
+h1 + section {
+    /* width:79.39%; */
+    width: 95%;
+    min-height:15vh;
+    margin:3vh auto 0 auto;
+    padding-top:4vh;
+    text-align: center;
+    border:0.3rem solid #748C6D;
+    border-bottom:0rem solid #748C6D;
+    background-color: #CADFDA66;
+}
+h1 + section label {
+    display:block;    
+    width:100%;
+    margin:1vh auto 1vh auto;
+    font-size: 1.15rem;
+}
+h1 + section label:nth-of-type(3){
+    display:inline-block;
+    width:70%;
+    margin:0 0 1vh 0;
+}
