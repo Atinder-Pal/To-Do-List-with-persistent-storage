@@ -37,7 +37,8 @@ function fetchAllCategories( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }   
+    } 
+    $result->close();  
     return $data;
 }
 
@@ -153,7 +154,8 @@ function displayActiveList( mysqli $db ){
         while($row = $result->fetch_assoc()){ //we can also use fetch_object() to return resultset as an object
             $data[] = $row;
         }
-    }        
+    }   
+    $result->close();      
     return $data;
 }
 
@@ -184,6 +186,7 @@ function displayOverdueList( mysqli $db ){
             $data[] = $row;
         }
     }    
+    $result->close(); 
     return $data;
 }
 
@@ -212,7 +215,8 @@ function setCompletedStatus(mysqli $db, array $completed_tasks ){
             $message="Task(s) added to Completed List" ;
         }
         // End Citation
-    }    
+    } 
+    $result->close();    
     return $message;
 }
 
@@ -241,6 +245,7 @@ function displayCompletedList( mysqli $db ){
             $data[] = $row;
         }
     }    
+    $result->close(); 
     return $data;
 }
 
@@ -269,6 +274,7 @@ function deleteTasks(mysqli $db, array $selected_tasks ){
             $message="Task(s) deleted!" ;
         }
         // End Citation
+        $result->close(); 
     }    
     return $message;
 }
