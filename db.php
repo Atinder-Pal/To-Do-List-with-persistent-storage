@@ -96,6 +96,35 @@ function isDuplicate( mysqli $db, string $task_name ){
     return $message; 
 }
 
+function isDuplicateCategory( mysqli $db, string $category_name ){       
+    if( $category_name !=''){    
+        $message = FALSE;    
+        $sql = $db->prepare( "SELECT * FROM Category WHERE CategoryName = ?" );
+        if( $sql ){
+            if( $sql->bind_param( "s", $category_name ) ){
+                if( $sql->execute() ){
+                    $result = $sql->get_result();
+                    if($result->num_rows > 0){
+                        $message = TRUE;
+                    }
+                }
+                else{
+                    exit("There was a problem executing stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+    }
+    // End Citation    
+    return $message; 
+}
+
+
 function displayActiveList( mysqli $db ){
     $data = [];
     // Citation
@@ -239,4 +268,32 @@ function deleteTasks(mysqli $db, array $selected_tasks ){
         // End Citation
     }    
     return $message;
+}
+
+
+function insertCategory( mysqli $db, string $category_name){
+    if( $category_name !=''){
+        // Citation
+        // Following code referenced from Classroom Practice by Tammy Valgardson
+        $insert = $db->prepare( "INSERT INTO Category( CategoryID, CategoryName )
+        VALUES( NULL, ? )");
+        if( $insert ){
+            if( $insert->bind_param("s", $category_name) ){
+                if( $insert->execute() ){
+                    $message = "Category Added to To-Do List";
+                }
+                else{
+                    exit("There was a problem executing insert stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to insert stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+    }
+    // End Citation    
+    return $message;    
 }

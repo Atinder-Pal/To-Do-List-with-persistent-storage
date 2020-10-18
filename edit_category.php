@@ -6,6 +6,23 @@
 
     $connection = connect( HOST, USER, PASSWORD, DATABASE );
     if($connection instanceof mysqli){
+        if( isset( $_POST[ 'add_category' ] ) ){
+            if ( !empty($_POST[ 'new_category' ])){
+                $new_sanitized_category = $connection->real_escape_string( $_POST[ 'new_category' ] );
+                if( !isDuplicateCategory( $connection, $new_sanitized_category ) ){
+                    $message = insertCategory( $connection, $new_sanitized_category );
+                }    
+                else{
+                    $message = "Category is already in the category list!";
+                }    
+            }
+        }
+
+
+
+
+
+
         $fetch_categories = fetchAllCategories( $connection );
         foreach( $fetch_categories as $category ){
             $categories .= sprintf( 
