@@ -214,9 +214,8 @@ function setCompletedStatus(mysqli $db, array $completed_tasks ){
         if($db->affected_rows > 0){
             $message="Task(s) added to Completed List" ;
         }
-        // End Citation
-    } 
-    $result->close();    
+        // End Citation        
+    }         
     return $message;
 }
 
@@ -273,8 +272,7 @@ function deleteTasks(mysqli $db, array $selected_tasks ){
         if($db->affected_rows > 0){
             $message="Task(s) deleted!" ;
         }
-        // End Citation
-        $result->close(); 
+        // End Citation         
     }    
     return $message;
 }

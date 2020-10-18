@@ -2,7 +2,7 @@
 <?php
     require_once'constants.php';
     require_once'db.php';
-
+    
     $category_select_options = null;
     $message = null;
     $completed_list = null;
@@ -56,14 +56,12 @@
                 $connection->close();          
             }           
         }
-        // ==========================================================================
-        
-    
-    
+        // ==========================================================================            
 ?>
+
     <section>    
         <h2>Add new Task to your List!</h2>
-        <?php if($message) echo $message; ?>
+        <?php //if($message) echo $message; ?>
         <form action="#" method="POST">
             <label for="new_task">
                 Add new task:            
