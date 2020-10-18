@@ -35,6 +35,17 @@
             }
         }
 
+        if( isset( $_POST[ 'delete_category' ] ) ){
+            //Test if $_POST has form data
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            if ( !empty($_POST[ 'category_id_to_be_edited' ]) && !empty($_POST[ 'category_to_be_edited' ]) ){
+                $category_id = filter_var($_POST['category_id_to_be_edited'], FILTER_SANITIZE_NUMBER_INT);
+                $message = deleteCategory( $connection, $category_id );                
+            }
+        }
+
         $fetch_categories = fetchAllCategories( $connection );
         foreach( $fetch_categories as $category ){
             $categories .= sprintf( 

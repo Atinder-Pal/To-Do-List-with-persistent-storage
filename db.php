@@ -68,12 +68,12 @@ function insertTask( mysqli $db, string $task_name, string $due_date, int $categ
     return $message;    
 }
 
-function isDuplicate( mysqli $db, string $task_name ){       
+function isDuplicate( mysqli $db, string $task_name, string $due_date, int $category_id ){       
     if( $task_name !=''){    
         $message = FALSE;    
-        $sql = $db->prepare( "SELECT * FROM Task WHERE TaskName = ? AND IsComplete IS NOT TRUE" );
+        $sql = $db->prepare( "SELECT * FROM Task WHERE TaskName = ? AND CategoryID = ? AND Duedate = ? AND IsComplete IS NOT TRUE" );
         if( $sql ){
-            if( $sql->bind_param( "s", $task_name ) ){
+            if( $sql->bind_param( "sis", $task_name, $category_id, $due_date ) ){
                 if( $sql->execute() ){
                     $result = $sql->get_result();
                     if($result->num_rows > 0){
@@ -205,9 +205,9 @@ function setCompletedStatus(mysqli $db, array $completed_tasks ){
         //If query returned any affected rows
         // citation
         // https://stackoverflow.com/questions/8356845/php-mysql-get-number-of-affected-rows-of-update-statement
-        // if($db->affected_rows > 0){
-        //     $message="Task(s) added to Completed List" ;
-        // }
+        if($db->affected_rows > 0){
+            $message="Task(s) added to Completed List" ;
+        }
         // End Citation
     }    
     return $message;
@@ -262,9 +262,9 @@ function deleteTasks(mysqli $db, array $selected_tasks ){
         //If query returned any affected rows
         // citation
         // https://stackoverflow.com/questions/8356845/php-mysql-get-number-of-affected-rows-of-update-statement
-        // if($db->affected_rows > 0){
-        //     $message="Task(s) added to Completed List" ;
-        // }
+        if($db->affected_rows > 0){
+            $message="Task(s) deleted!" ;
+        }
         // End Citation
     }    
     return $message;
@@ -304,7 +304,7 @@ function editCategory( $db, $category_id, $category_name ){
         if( $edit ){
             if( $edit->bind_param("si", $category_name, $category_id) ){
                 if( $edit->execute() ){
-                    $message = "Category added to Category List";
+                    $message = "Category edited in the Category List";
                 }
                 else{
                     exit("There was a problem executing edit stmt");
@@ -322,3 +322,29 @@ function editCategory( $db, $category_id, $category_name ){
     return $message; 
     
 }
+
+function deleteCategory( $db, $category_id ){
+    $message = null;
+    if( $category_id !=['']){
+        $delete = $db->prepare( "DELETE FROM Category WHERE CategoryID = ?" );
+        if( $delete ){
+            if( $delete->bind_param("i", $category_id) ){
+                if( $delete->execute() && $db->affected_rows > 0 ){
+                    $message = "Category deleted from Category List";
+                }
+                else{
+                    exit("There was a problem executing delete stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to delete stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+        return $message;
+    }    
+    
+}
+    
