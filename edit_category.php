@@ -18,18 +18,30 @@
             }
         }
 
-
-
-
-
+        if( isset( $_POST[ 'edit_category' ] ) ){
+            //Test if $_POST has form data
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            if ( !empty($_POST[ 'category_id_to_be_edited' ]) && !empty($_POST[ 'category_to_be_edited' ]) ){
+                $category_name = $connection->real_escape_string( $_POST[ 'category_to_be_edited' ] );
+                if( !isDuplicateCategory( $connection, $category_name ) ){
+                    $category_id = filter_var($_POST['category_id_to_be_edited'], FILTER_SANITIZE_NUMBER_INT);
+                    $message = editCategory( $connection, $category_id, $category_name );
+                }    
+                else{
+                    $message = "Category is already in the category list!";
+                }    
+            }
+        }
 
         $fetch_categories = fetchAllCategories( $connection );
         foreach( $fetch_categories as $category ){
             $categories .= sprintf( 
-                '<form>
+                '<form action="#" method="POST">
                 <input type="hidden" name="category_id_to_be edited" id="category_id_to_be edited" value=%d>
                 <input type="text" name="category_to_be edited" id="category_to_be edited" value="%s" autofocus>
-                <input type="submit" name="edit_category_button" value="Edit" id="edit_category_button">
+                <input type="submit" name="edit_category" value="Edit" id="edit_category_button">
                 </form>',
                 $category[ 'CategoryID' ],
                 $category[ 'CategoryName' ] 
@@ -43,7 +55,7 @@
 </nav>
 
 <h2>Add a new Category!</h2>
-    <?php //if($message) echo $message; ?>
+    <?php if($message) echo $message; ?>
     <form action="#" method="POST">
         <label for="new_category">
             Add new Category:            

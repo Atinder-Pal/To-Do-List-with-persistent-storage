@@ -297,3 +297,28 @@ function insertCategory( mysqli $db, string $category_name){
     // End Citation    
     return $message;    
 }
+
+function editCategory( $db, $category_id, $category_name ){
+    if( $category_id !='' && $category_name !='' ){       
+        $edit = $db->prepare( "UPDATE Category SET CategoryName = ? WHERE CategoryID = ? " );
+        if( $edit ){
+            if( $edit->bind_param("si", $category_name, $category_id) ){
+                if( $edit->execute() ){
+                    $message = "Category added to Category List";
+                }
+                else{
+                    exit("There was a problem executing edit stmt");
+                }
+            }
+            else{
+                exit("There was a problem binding param to edit stmt");
+            }
+        }
+        else {
+            exit("There was a problem with the prepare statement");
+        }
+    }
+    // End Citation    
+    return $message; 
+    
+}
