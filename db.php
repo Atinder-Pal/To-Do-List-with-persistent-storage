@@ -63,8 +63,9 @@ function insertTask( mysqli $db, string $task_name, string $due_date, int $categ
         else {
             exit("There was a problem with the prepare statement");
         }
+        $insert->close();
     }
-    // End Citation    
+    // End Citation     
     return $message;    
 }
 
@@ -91,8 +92,9 @@ function isDuplicate( mysqli $db, string $task_name, string $due_date, int $cate
         else {
             exit("There was a problem with the prepare statement");
         }
+        $sql->close();
     }
-    // End Citation    
+    // End Citation     
     return $message; 
 }
 
@@ -119,8 +121,9 @@ function isDuplicateCategory( mysqli $db, string $category_name ){
         else {
             exit("There was a problem with the prepare statement");
         }
+        $sql->close(); 
     }
-    // End Citation    
+    // End Citation       
     return $message; 
 }
 
@@ -293,8 +296,9 @@ function insertCategory( mysqli $db, string $category_name){
         else {
             exit("There was a problem with the prepare statement");
         }
+        $insert->close();
     }
-    // End Citation    
+    // End Citation     
     return $message;    
 }
 
@@ -318,8 +322,10 @@ function editCategory( $db, $category_id, $category_name ){
         else {
             exit("There was a problem with the prepare statement");
         }
+        $edit->close(); 
     }
-    // End Citation    
+    // End Citation  
+     
     return $message; 
     
 }
@@ -343,9 +349,9 @@ function deleteCategory( $db, $category_id ){
         }
         else {
             exit("There was a problem with the prepare statement");
-        }
-        return $message;
+        }       
+        $delete->close(); 
     }    
-    
+    return $message;
 }
     
