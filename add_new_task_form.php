@@ -86,9 +86,13 @@
             https://stackoverflow.com/questions/2825856/html-button-to-not-submit-form
             Fixed error by specifying type=button inside button to avoid it submitting the form
             -->
-            <button type="button" id ="add_edit_category_button" name="add_edit_category_button" onclick = showEditPage()>Add/Edit Category</button>   
+            <button type="button" id ="add_edit_category_button" name="add_edit_category_button" onclick = showEditPage()><i class="fas fa-pen"></i>Category</button>   
             <!-- End Citation -->
-            <input type="submit" name="add_task" value="Add to List" id="add_task_button">            
+            <!-- Citation
+            https://stackoverflow.com/questions/9376192/add-icon-to-submit-button-in-twitter-bootstrap-2
+            -->
+            <button type="submit" name="add_task" id="add_task_button"> <i class="fas fa-plus"></i> Add Task</button>
+            <!-- End Citation -->          
         </form> 
         
     </section>

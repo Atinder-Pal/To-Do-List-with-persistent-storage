@@ -31,7 +31,7 @@ h1 + section {
     border-bottom:0rem solid #748C6D;
     background-color: #CADFDA66;
 }
-h1 + section label {
+h1 + section label:first-of-type,h1 + section label:nth-of-type(2) {
     display:block;    
     width:100%;
     margin:1vh auto 1vh auto;
@@ -41,4 +41,12 @@ h1 + section label:nth-of-type(3){
     display:inline-block;
     width:70%;
     margin:0 0 1vh 0;
+}
+#add_task_button, #add_edit_category_button{
+    display: inline-block;  
+    font-size: 0.9rem;
+    background-color:#F2B441;  
+    padding:0.8vw;
+    font-weight: 500;
+    border-radius: 0.3rem;
 }
