@@ -10,7 +10,7 @@ h1 {
     width:100%;
     text-align: center;
     margin-top: 0;
-    margin-bottom:3vh;
+    margin-bottom:0;
     padding:1vh;
     font-size: 1.5rem;
     background-color: #DC4C3F;
@@ -22,12 +22,12 @@ section h2{
 }
 h1 + section {
     /* width:79.39%; */
-    width: 95%;
+    width: 97.5%;
     min-height:15vh;
-    margin:3vh auto 0 auto;
-    padding-top:4vh;
+    margin:0 auto;
+    padding-top:2vh;
     text-align: center;
-    border:0.3rem solid #748C6D;
+    border:0.348rem solid #748C6D;
     border-bottom:0rem solid #748C6D;
     background-color: #CADFDA66;
 }
@@ -41,12 +41,71 @@ h1 + section label:nth-of-type(3){
     display:inline-block;
     width:70%;
     margin:0 0 1vh 0;
+    font-size: 1.12rem;
 }
 #add_task_button, #add_edit_category_button{
     display: inline-block;  
     font-size: 0.9rem;
-    background-color:#F2B441;  
+    background-color:#F2B441BB;  
     padding:0.8vw;
     font-weight: 500;
     border-radius: 0.3rem;
+    margin-bottom: 2.5vh;
+}
+/* select {
+    background-color: yellow; 
+   } */
+  
+  select option:hover {
+    box-shadow: 0 0 10px 100px #1882A8 inset; 
+  }
+div section, div + section{
+    width:97.5%;  
+    min-height:15vh; 
+    margin:0 auto; 
+    text-align: center;   
+    align-content: center;
+    border:0.348rem solid #748C6D;
+    background-color: #CADFDA66;
+    border-bottom:0rem solid #748C6D;
+}
+div section h2, div + section h2{
+    margin-top:1.5vh;
+}
+div section form table, div + section table{
+    margin:1.5vh 0 0 1vh; 
+    text-align: left; 
+    padding-bottom: 1.5vh;  
+}
+input[type='checkbox'] {
+    margin-right:1vh;
+}
+#completed_button, #delete_button{
+    display: inline-block;  
+    font-size: 0.9rem;
+    background-color:#F2B441BB;  
+    padding:0.8vw;
+    font-weight: 500;
+    border-radius: 0.3rem;
+    margin:1vh auto;
+}
+div + section table{
+    border-spacing: 0.7rem;       
+}
+div + section table tr td{
+    text-decoration: line-through; 
+}
+div + section{
+    border-bottom:0.348rem solid #748C6D; 
+}
+#add_task_button:hover, #add_edit_category_button:hover, #delete_button:hover, #completed_button:hover {
+    background-color: #5E7A8F;
+}
+footer {
+    min-height:5vh;
+    text-align: center;
+    background-color: #DC4C3F;
+    padding-top:2vh;
+    font-size: 1.15rem;
+    color:#fff;
 }

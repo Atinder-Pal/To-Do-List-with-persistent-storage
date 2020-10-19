@@ -24,8 +24,7 @@
 
 <section>
     <h2>Completed Tasks</h2>
-    <?php if($message) echo $message; ?>
-    <form action="#" method="POST">
+    <?php if($message) echo $message; ?>    
         <table>
             <tr>                
                 <th>Category</th> 
@@ -33,6 +32,5 @@
                 <th>Due Date</th> 
             </tr>
             <?php echo $completed_list ?>
-        </table>                    
-    </form>        
+        </table>                           
 </section>

@@ -1,5 +1,14 @@
-<?php //date_default_timezone_set('America/Edmonton'); ?>
+
+
+
 <?php
+    //Citation
+    //https://stackoverflow.com/questions/15359451/xampp-php-date-function-time-is-different-from-local-machine-time
+    // Thanks to Aaron Barthel who pointed me to above source to fix the error as my Xampp server returned different date
+    // time function than my local machine time
+    date_default_timezone_set('America/Edmonton'); 
+    //End Citation
+    
     require_once'constants.php';
     require_once'db.php';
     

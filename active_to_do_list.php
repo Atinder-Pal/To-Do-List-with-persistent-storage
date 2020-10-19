@@ -47,10 +47,13 @@
     }
     $connection->close();
 ?>
+<div class="flex">
 <section>
         <h2>Active To-Do List</h2>
         <?php// if($message) echo $message; ?>
         <form action="#" method="POST">
+            <button type="submit" name="completed_task" id="completed_button"><i class="far fa-check-square"></i> Complete</button>           
+            <button type="submit" name="delete_task" id="delete_button"><i class="far fa-trash-alt"></i> Delete</button>
             <table>
                 <tr>
                    <th><input type="checkbox" disabled></th> 
@@ -60,7 +63,7 @@
                 </tr>
                 <?php echo $active_list ?>
             </table>
-            <input type="submit" name="completed_task" value="Completed!" id="completed_button">            
-            <input type="submit" name="delete_task" value="Delete" id="delete_button">            
+                        
         </form>        
     </section>
+

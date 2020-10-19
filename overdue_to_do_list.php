@@ -23,20 +23,22 @@
     $connection->close();
 ?>
 
-<section>
-    <h2>Overdue Tasks</h2>
-    <?php// if($message) echo $message; ?>
-    <form action="#" method="POST">
-        <table>
-            <tr>
-                <th><input type="checkbox" disabled></th> 
-                <th>Category</th> 
-                <th>Task</th> 
-                <th>Due Date</th> 
-            </tr>
-            <?php echo $overdue_list ?>
-        </table>
-        <input type="submit" name="completed_task" value="Completed!" id="completed_button"> 
-        <input type="submit" name="delete_task" value="Delete" id="delete_button">            
-    </form>        
-</section>
+    <section>
+        <h2>Overdue Tasks</h2>
+        <?php// if($message) echo $message; ?>
+        <form action="#" method="POST">
+            <button type="submit" name="completed_task" id="completed_button"><i class="far fa-check-square"></i> Complete</button> 
+            <button type="submit" name="delete_task" id="delete_button"><i class="far fa-trash-alt"></i> Delete</button>
+            <table>
+                <tr>
+                    <th><input type="checkbox" disabled></th> 
+                    <th>Category</th> 
+                    <th>Task</th> 
+                    <th>Due Date</th> 
+                </tr>
+                <?php echo $overdue_list ?>
+            </table>
+                    
+        </form>        
+    </section>
+</div>
