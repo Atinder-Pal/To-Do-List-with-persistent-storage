@@ -43,7 +43,7 @@ h1 + section label:nth-of-type(3){
     margin:0 0 1vh 0;
     font-size: 1.12rem;
 }
-#add_task_button, #add_edit_category_button{
+#add_edit_category_button{
     display: inline-block;  
     font-size: 0.9rem;
     background-color:#F2B441BB;  
@@ -52,13 +52,18 @@ h1 + section label:nth-of-type(3){
     border-radius: 0.3rem;
     margin-bottom: 2.5vh;
 }
-/* select {
-    background-color: yellow; 
-   } */
-  
-  select option:hover {
-    box-shadow: 0 0 10px 100px #1882A8 inset; 
-  }
+#add_task_button{
+    display: block;  
+    font-size: 0.9rem;
+    background-color:#F2B441BB;  
+    padding:0.8vw;
+    font-weight: 500;
+    border-radius: 0.3rem;
+    margin:0 auto;     
+}
+h1+section form{
+    padding-bottom:2.5vh;
+}
 div section, div + section{
     width:97.5%;  
     min-height:15vh; 
@@ -108,4 +113,65 @@ footer {
     padding-top:2vh;
     font-size: 1.15rem;
     color:#fff;
+}
+
+@media screen and (min-width:760px){
+    h1 {
+        font-size: 2.5rem;
+        padding:1.5vh;
+    }
+    section h2{
+        color:#DC4C3F;
+        font-size: 1.8rem;
+    }
+    h1 + section {        
+        width: 99%;        
+    }
+    h1 + section label:first-of-type,h1 + section label:nth-of-type(2) {
+        display:block;    
+        width:100%;
+        margin:1vh auto 1vh auto;
+        font-size: 1.3rem;
+    }
+    input, select{
+        font-size: 1.1rem;
+    }
+    input[type='date']{
+        font-size: 1.3rem;
+    }
+    h1 + section label:nth-of-type(3){
+        display:inline;
+        width:70%;
+        margin:0 0 1vh 0;
+        font-size: 1.3rem;
+    }   
+    div section, div + section{
+        width:99%;        
+    }    
+    div section form table, div + section table{
+        margin:1vh 0 0 5vh;        
+        padding-bottom: 2vh; 
+        font-size: 1.3rem; 
+        border-spacing: 0.7rem;       
+    }
+    input[type='checkbox'] {
+        margin-right:1vh;
+    }
+    #add_task_button, #add_edit_category_button, #completed_button, #delete_button{
+        display: inline-block;  
+        font-size: 1.2rem;
+        background-color:#F2B441BB;  
+        padding:0.8vw;
+        font-weight: 500;
+        border-radius: 0.3rem;
+        margin:1vh auto;
+    }
+    div + section table{
+        border-spacing: 0.9rem;       
+    }       
+    footer {       
+        font-size: 1.25rem;        
+    }
+    
+
 }

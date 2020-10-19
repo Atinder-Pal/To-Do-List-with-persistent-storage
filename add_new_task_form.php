@@ -86,7 +86,7 @@
             </label>
             <label for="category">
                 Task Category:            
-                <select name="category" id="category" required>
+                <select name="category" id="category" required >
                     <option value="">Select a category</option>
                     <?php echo $category_select_options; ?>
                 </select>
