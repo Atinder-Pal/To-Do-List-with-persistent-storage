@@ -60,7 +60,7 @@
                     $message = insertTask( $connection, $new_task, $due_date, $category );
                 }    
                 else{
-                    $message = "Task is already added to the list!";
+                    echo "Task is already added to the list!";
                 } 
                 $connection->close();          
             }           
