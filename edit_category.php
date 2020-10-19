@@ -47,6 +47,7 @@
             if ( !empty($_POST[ 'category_id_to_be_edited' ]) && !empty($_POST[ 'category_to_be_edited' ]) ){
                 $category_id = filter_var($_POST['category_id_to_be_edited'], FILTER_SANITIZE_NUMBER_INT);
                 $connection = connect( HOST, USER, PASSWORD, DATABASE );
+                echo $category_id;                
                 $message = deleteCategory( $connection, $category_id );
                 $connection->close();                  
             }

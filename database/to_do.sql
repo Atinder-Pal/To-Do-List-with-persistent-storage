@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS Category;
 -- Create a new Category Table
 CREATE TABLE IF NOT EXISTS Category ( 
     CategoryID int(10) PRIMARY KEY AUTO_INCREMENT,    
-    CategoryName varchar(30) NOT NULL
+    CategoryName varchar(30) NOT NULL,
+    IsDeleted boolean NOT NULL DEFAULT 0
 );
 
 -- Create a new Task Table
@@ -29,4 +30,6 @@ INSERT INTO Task (TaskID, CategoryID, TaskName, DueDate, IsComplete)
 VALUES 
 (NULL, 1, 'Clean-up my room', '2020-10-16', 0),
 (NULL, 2, 'Read Book on SQL', '2020-10-16', 0);
+
+
 

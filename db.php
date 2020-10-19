@@ -23,7 +23,7 @@ function connect($dbHost, $dbUsername, $dbPassword, $dbName){
 
 function fetchAllCategories( mysqli $db ){
     $data = [];
-    $sql = "SELECT * FROM Category";
+    $sql = "SELECT * FROM Category WHERE IsDeleted IS NOT TRUE";
     $result = $db->query($sql);
 
     //Check if the query was executed successfully
@@ -102,7 +102,7 @@ function isDuplicate( mysqli $db, string $task_name, string $due_date, int $cate
 function isDuplicateCategory( mysqli $db, string $category_name ){       
     if( $category_name !=''){    
         $message = FALSE;    
-        $sql = $db->prepare( "SELECT * FROM Category WHERE CategoryName = ?" );
+        $sql = $db->prepare( "SELECT * FROM Category WHERE CategoryName = ? AND IsDeleted IS NOT TRUE" );
         if( $sql ){
             if( $sql->bind_param( "s", $category_name ) ){
                 if( $sql->execute() ){
@@ -337,10 +337,10 @@ function editCategory( $db, $category_id, $category_name ){
 function deleteCategory( $db, $category_id ){
     $message = null;
     if( $category_id !=['']){
-        $delete = $db->prepare( "DELETE FROM Category WHERE CategoryID = ?" );
+        $delete = $db->prepare( "UPDATE Category SET IsDeleted =1 WHERE CategoryID = ?" );
         if( $delete ){
             if( $delete->bind_param("i", $category_id) ){
-                if( $delete->execute() && $db->affected_rows > 0 ){
+                if( $delete->execute() ){
                     $message = "Category deleted from Category List";
                 }
                 else{
