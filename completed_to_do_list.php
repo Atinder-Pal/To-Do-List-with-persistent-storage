@@ -24,7 +24,7 @@
 
 <section>
     <h2>Completed Tasks</h2>
-    <?php if($message) echo $message; ?>    
+    <?php //if($message) echo $message; ?>    
         <table>
             <tr>                
                 <th>Category</th> 

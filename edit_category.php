@@ -74,7 +74,7 @@
 
 <section>
 <h2>Add a new Category!</h2>
-    <?php if($message) echo $message; ?>
+    <?php //if($message) echo $message; ?>
     <form action="#" method="POST">
         <label for="new_category">
             Add new Category:            
