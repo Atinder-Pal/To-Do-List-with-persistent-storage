@@ -157,13 +157,9 @@ footer {
     input[type='checkbox'] {
         margin-right:1vh;
     }
-    #add_task_button, #add_edit_category_button, #completed_button, #delete_button{
-        display: inline-block;  
-        font-size: 1.2rem;
-        background-color:#F2B441BB;  
-        padding:0.8vw;
-        font-weight: 500;
-        border-radius: 0.3rem;
+    #add_task_button, #add_edit_category_button, #completed_button, #delete_button{          
+        font-size: 1.2rem;          
+        padding:0.8vw;        
         margin:1vh auto;
     }
     div + section table{
@@ -172,6 +168,36 @@ footer {
     footer {       
         font-size: 1.25rem;        
     }
-    
-
 }
+
+@media screen and (min-width:1024px)
+{    
+    .flex{  
+        width:99.8%;        
+        margin:0 auto;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: center;
+        border:0.348rem solid #748C6D;
+        border-left:0rem solid #748C6D;
+        border-right:0rem solid #748C6D;
+        border-bottom:0rem solid #748C6D;
+        background-color: #CADFDA66;
+    }
+    .flex section{
+        width:49.3%;
+        /* border:0.3rem solid black; */
+        min-height: 50vh;  
+        border-top:0rem solid #748C6D;     
+        border-bottom:0rem solid #748C6D;     
+    }
+    .flex > section:first-of-type {
+        border-right:0rem solid #748C6D;
+    }
+    div + section table{
+        margin-left:auto;       
+        margin-right:auto;       
+    }
+}      
