@@ -1,7 +1,9 @@
 <?php
+    // Show Header
+    include dirname(__FILE__).'/includes/header.php';
     require_once'constants.php';
     require_once'db.php';
-
+    
     $categories = null;
     $message = null;
         if( isset( $_POST[ 'add_category' ] ) ){
@@ -54,11 +56,11 @@
         $fetch_categories = fetchAllCategories( $connection );
         foreach( $fetch_categories as $category ){
             $categories .= sprintf( 
-                '<form action="#" method="POST">
+                '<form action="#" method="POST">                
                 <input type="hidden" name="category_id_to_be edited" id="category_id_to_be edited" value=%d>
                 <input type="text" name="category_to_be edited" id="category_to_be edited" value="%s" autofocus>
-                <input type="submit" name="edit_category" value="Edit" id="edit_category_button">
-                <input type="submit" name="delete_category" id="delete_category_button" value="X">
+                <button type="submit" name="edit_category" id="edit_category_button"><i class="fas fa-pen"></i>Edit</button>
+                <button type="submit" name="delete_category" id="delete_category_button"><i class="far fa-trash-alt"></i></button>
                 </form>',
                 $category[ 'CategoryID' ],
                 $category[ 'CategoryName' ] 
@@ -68,9 +70,8 @@
 
 ?>    
 <article>
-<nav>
-    <a href="index.php">HOME</a>
-</nav>
+    <a href="index.php"><button><i class="fas fa-arrow-left"></i>  <i class="fas fa-arrow-left"></i> GO TO HOME</button></a>
+
 <section>
 <h2>Add a new Category!</h2>
     <?php if($message) echo $message; ?>
@@ -79,7 +80,7 @@
             Add new Category:            
             <input id="new_category" type="text" value="" name="new_category" placeholder="New Category" autofocus required>
         </label>
-        <input type="submit" name="add_category" value="Add" id="add_category_button"> 
+        <button type="submit" name="add_category" id="add_category_button"><i class="fas fa-plus"></i> Add</button>
     </form>
 </section>
 
@@ -89,3 +90,6 @@
     <?php echo $categories ?>
 </section>
 </article>
+<?php // Show Footer
+    include dirname(__FILE__).'/includes/footer.php';
+?>
